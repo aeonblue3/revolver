@@ -1,5 +1,5 @@
 suite 'Instance Methods', ->
-  
+
   # revolver instance
   slider = undefined
   originalSlider = undefined
@@ -11,7 +11,7 @@ suite 'Instance Methods', ->
   suiteTeardown ->
     slider = originalSlider = null
 
-  
+
   # addSlide
   suite '#addSlide()', ->
     test 'adds one more to this.slides array', ->
@@ -26,7 +26,27 @@ suite 'Instance Methods', ->
       slider.addSlide document.createElement('div')
       assert.strictEqual slider.nextSlide, nextSlide
 
-  
+
+  # removeSlide
+  suite '#removeSlide()', ->
+    test 'remove a slide from this.slides array', ->
+      numSlides = slider.slides.length
+      slider.removeSlide 0
+      assert.strictEqual slider.slides.length, numSlides - 1
+    test 'remove the right slide from this.slides array', ->
+      slideIndex = 1
+      slide = document.getElementsByClassName('slide')[slideIndex]
+      slider.removeSlide slideIndex
+      assert.strictEqual slider.slides.indexOf(slide), -1
+    test 'recalculates this.numSlides correctly', ->
+      slider.removeSlide 1
+      assert.strictEqual slider.numSlides, slider.slides.length
+    test 'recalculates this.nextSlide correctly', ->
+      nextSlide = (if slider.currentSlide is slider.lastSlide then 0 else slider.currentSlide + 1)
+      slider.removeSlide 0
+      assert.strictEqual slider.nextSlide, nextSlide
+
+
   # changeStatus
   suite '#changeStatus()', ->
     test 'plays', ->
@@ -45,7 +65,7 @@ suite 'Instance Methods', ->
       assert.strictEqual slider.status.paused, false
       assert.strictEqual slider.status.stopped, true
 
-  
+
   # pause
   suite '#pause()', ->
     test 'changes status to paused if playing or stopped', ->
@@ -61,7 +81,7 @@ suite 'Instance Methods', ->
       slider.pause()
       assert.strictEqual slider.intervalId, null
 
-  
+
   # play
   suite '#play()', ->
     test 'changes status to playing if paused or stopped', ->
@@ -88,7 +108,7 @@ suite 'Instance Methods', ->
       slider.reset()
       assert.strictEqual slider.nextSlide, 0
 
-  
+
   # restart
   suite '#restart()', ->
     setup ->
@@ -101,7 +121,7 @@ suite 'Instance Methods', ->
       assert.strictEqual slider.status.paused, false
       assert.strictEqual slider.status.stopped, false
 
-  
+
   # setOptions
   suite '#setOptions()', ->
     test 'sets a new option', ->
@@ -111,7 +131,7 @@ suite 'Instance Methods', ->
       slider.setOptions slidesSelector: '.mySlides'
       assert.strictEqual slider.options.slidesSelector, '.mySlides'
 
-  
+
   # stop
   suite '#stop()', ->
     test 'changes status to stopped if paused or playing', ->
@@ -127,7 +147,7 @@ suite 'Instance Methods', ->
       slider.stop()
       assert.strictEqual slider.intervalId, null
 
-  
+
   # stop
   suite '#goTo()', ->
     test 'does nothing if disabled', ->
@@ -143,7 +163,7 @@ suite 'Instance Methods', ->
 
 # Static Methods
 suite 'Static Methods', ->
-  
+
   # registerTranistion
   suite '#registerTransition()', ->
     handler = ->
@@ -152,7 +172,7 @@ suite 'Static Methods', ->
       assert.strictEqual Revolver.transitions.test, handler
     test 'returns the Revolver global object', ->
       assert.strictEqual result, Revolver
-  
+
   # setSelectorEngine
   # suite '#setSelectorEngine()', ->
   #   new$ = ->

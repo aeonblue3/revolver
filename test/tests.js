@@ -31,6 +31,31 @@
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
     });
+    suite('#removeSlide()', function() {
+      test('remove a slide from this.slides array', function() {
+        var numSlides;
+        numSlides = slider.slides.length;
+        slider.removeSlide(0);
+        return assert.strictEqual(slider.slides.length, numSlides - 1);
+      });
+      test('remove the right slide from this.slides array', function() {
+        var slide, slideIndex;
+        slideIndex = 1;
+        slide = document.getElementsByClassName('slide')[slideIndex];
+        slider.removeSlide(slideIndex);
+        return assert.strictEqual(slider.slides.indexOf(slide), -1);
+      });
+      test('recalculates this.numSlides correctly', function() {
+        slider.removeSlide(1);
+        return assert.strictEqual(slider.numSlides, slider.slides.length);
+      });
+      return test('recalculates this.nextSlide correctly', function() {
+        var nextSlide;
+        nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
+        slider.removeSlide(0);
+        return assert.strictEqual(slider.nextSlide, nextSlide);
+      });
+    });
     suite('#changeStatus()', function() {
       test('plays', function() {
         slider.changeStatus('playing');
