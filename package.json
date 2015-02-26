@@ -2,18 +2,18 @@
   "name": "revolverjs",
   "description": "A javascript library for building your own content slider.",
   "version": "2.1.1",
-  "homepage": "https://github.com/johnnyfreeman/revolverjs",
+  "homepage": "https://github.com/aeonblue3/revolverjs",
   "author": {
     "name": "Johnny Freeman",
     "email": "prsjohnny@gmail.com",
-    "url": "http://github.com/johnnyfreeman"
+    "url": "http://github.com/aeonblue3"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/johnnyfreeman/revolverjs.git"
+    "url": "git://github.com/aeonblue3/revolverjs.git"
   },
   "bugs": {
-    "url": "https://github.com/johnnyfreeman/revolverjs/issues"
+    "url": "https://github.com/aeonblue3/revolverjs/issues"
   },
   "devDependencies": {
     "chai": "~1.8.1",
