@@ -95,6 +95,20 @@
     return this;
   };
 
+  Revolver.prototype.moveSlide = function(src_index, dest_index) {
+    var temp;
+    if (dest_index >= this.slides.length) {
+      dest_index = 0;
+    }
+    if (dest_index < 0) {
+      dest_index = this.slides.length - 1;
+    }
+    temp = this.slides[dest_index];
+    this.slides[dest_index] = this.slides[src_index];
+    this.slides[src_index] = temp;
+    return this.goTo(dest_index, this.options);
+  };
+
   Revolver.prototype.setOptions = function() {
     var args;
     args = Array.prototype.slice.call(arguments, 0);

@@ -133,6 +133,22 @@ Revolver::removeSlide = (index) ->
   # return instance
   this
 
+# Move a slide in slides array
+Revolver::moveSlide = (src_index, dest_index) ->
+  # If the destination index is greater than the array length, 0
+  if dest_index >= @slides.length then dest_index = 0
+  # If the destination index is less than 0, use array length - 1
+  if dest_index < 0 then dest_index = @slides.length - 1
+
+  # Copy slide in destination spot
+  temp = @slides[dest_index]
+  # Move source slide to destination
+  @slides[dest_index] = @slides[src_index]
+  # Move temp to old src_index
+  @slides[src_index] = temp
+  # Goto the new destination
+  @goTo dest_index, @options
+
 
 # set options
 Revolver::setOptions = () ->

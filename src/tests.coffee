@@ -46,6 +46,35 @@ suite 'Instance Methods', ->
       slider.removeSlide 0
       assert.strictEqual slider.nextSlide, nextSlide
 
+  #moveSlide
+  suite '#moveSlide()', ->
+    test 'increment slide position in this.slides array', ->
+      slide = slider.slides[1]
+      slider.moveSlide 1, 2
+      assert.strictEqual slider.slides.indexOf(slide), 2
+    test 'decrement slide position in this.slides array', ->
+      slide = slider.slides[2]
+      slider.moveSlide 2, 1
+      assert.strictEqual slider.slides.indexOf(slide), 1
+    test 'last slide moves to first', ->
+      slide = slider.slides[3]
+      slider.moveSlide 3, 0
+      assert.strictEqual slider.slides.indexOf(slide), 0
+    test 'first slide moves to last', ->
+      slide = slider.slides[0]
+      slider.moveSlide 0, 3
+      assert.strictEqual slider.slides.indexOf(slide), 3
+    test 'last slide moves to first when destination is out of bounds', ->
+      slide = slider.slides[3]
+      slider.moveSlide 3, 4
+      assert.strictEqual slider.slides.indexOf(slide), 0
+    test 'first slide moves to last when destination is less than zero', ->
+      slide = slider.slides[0]
+      slider.moveSlide 0, -1
+      assert.strictEqual slider.slides.indexOf(slide), 3
+    test 'currentSlide points to new slide position', ->
+      slider.moveSlide 0, 1
+      assert.strictEqual slider.currentSlide, 1
 
   # changeStatus
   suite '#changeStatus()', ->

@@ -37,6 +37,8 @@ Revolver emits important events and exposes an event api so that you can hook in
 Once you have instantiated Revolver, as shown [here](#usage), you then have access to all these methods.
 
 * [**addSlide()**](methods/addslide.md): Add a new slide to the [slides](props/slides.md) array.
+* [**removeSlide()**](methods/removeslide.md): Remove a slide from the [slides](props/slides.md) array.
+* [**moveSlide()**](methods/moveslide.md): Move a slide in the [slides](props/slides.md) array.
 * [**first()**](methods/first.md): Transition immediately to the first slide.
 * [**goTo()**](methods/goto.md): Transition immediately to any given slide.
 * [**last()**](methods/last.md): Transition immediately to the last (not previous) slide.
