@@ -25,6 +25,11 @@ suite 'Instance Methods', ->
       nextSlide = (if slider.currentSlide is slider.lastSlide then 0 else slider.currentSlide + 1)
       slider.addSlide document.createElement('div')
       assert.strictEqual slider.nextSlide, nextSlide
+    test 'does not add slide if already added', ->
+      numSlides = slider.slides.length
+      slide = document.getElementsByClassName('slide')[0]
+      slider.addSlide slide
+      assert.strictEqual slider.slides.length, numSlides
 
 
   # removeSlide

@@ -24,11 +24,18 @@
         slider.addSlide(document.createElement('div'));
         return assert.strictEqual(slider.numSlides, slider.slides.length);
       });
-      return test('recalculates this.nextSlide correctly', function() {
+      test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
         slider.addSlide(document.createElement('div'));
         return assert.strictEqual(slider.nextSlide, nextSlide);
+      });
+      return test('does not add slide if already added', function() {
+        var numSlides, slide;
+        numSlides = slider.slides.length;
+        slide = document.getElementsByClassName('slide')[0];
+        slider.addSlide(slide);
+        return assert.strictEqual(slider.slides.length, numSlides);
       });
     });
     suite('#removeSlide()', function() {

@@ -105,6 +105,7 @@ Revolver.VERSION = '2.1.1'
 
 # add a new slide
 Revolver::addSlide = (slide) ->
+  if !!~@slides.indexOf slide then return this
   # add new slide to the slides array
   @slides.push slide
   # recalculate total number of slides

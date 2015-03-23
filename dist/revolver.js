@@ -73,6 +73,9 @@
 
   Revolver.prototype.addSlide = function(slide) {
     var currentPlusOne;
+    if (!!~this.slides.indexOf(slide)) {
+      return this;
+    }
     this.slides.push(slide);
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
