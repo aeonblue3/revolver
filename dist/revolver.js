@@ -85,16 +85,13 @@
   };
 
   Revolver.prototype.removeSlide = function(index) {
-    var currentPlusOne;
     if (index < 0 || index >= this.numSlides) {
       return void 0;
     }
     this.slides.splice(index, 1);
+    this.goTo(this.currentSlide, this.options);
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
-    this.currentSlide = (this.currentSlide === index && index !== 0 ? this.currentSlide - 1 : this.currentSlide);
-    currentPlusOne = this.currentSlide + 1;
-    this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
     return this;
   };
 

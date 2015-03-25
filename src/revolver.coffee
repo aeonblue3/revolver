@@ -123,14 +123,17 @@ Revolver::removeSlide = (index) ->
   return undefined if index < 0 or index >= @numSlides
 
   @slides.splice index, 1
+
+  @goTo @currentSlide, @options
+
   # recalculate total number of slides
   @numSlides     = @slides.length
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
   # recalculate which is the next slide
-  @currentSlide  = (if @currentSlide is index and index isnt 0 then @currentSlide - 1 else @currentSlide)
-  currentPlusOne = @currentSlide + 1
-  @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
+  # @currentSlide  = (if @currentSlide is index and index isnt 0 then @currentSlide - 1 else @currentSlide)
+  # currentPlusOne = @currentSlide + 1
+  # @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
   # return instance
   this
 

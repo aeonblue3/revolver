@@ -59,14 +59,22 @@
       test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
+        console.log("slider.currentSlide: " + slider.currentSlide);
         slider.removeSlide(0);
+        console.log("New nextSlide: " + slider.nextSlide);
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
-      return test('recalculates this.currentSlide correctly', function() {
+      test('recalculates this.currentSlide correctly', function() {
         var numSlides;
         numSlides = slider.slides.length;
         slider.removeSlide(0);
         return assert.strictEqual(slider.currentSlide, 0);
+      });
+      return test('activate next slide upon delete', function() {
+        var slide;
+        slide = slider.slides[1];
+        slider.removeSlide(0);
+        return assert.strictEqual(slider.slides.indexOf(slide), 0);
       });
     });
     suite('#moveSlide()', function() {
@@ -214,11 +222,17 @@
         slider.goTo(slider.lastSlide);
         return assert.strictEqual(slider.currentSlide, 0);
       });
-      return test('goes to intended slide', function() {
+      test('goes to intended slide', function() {
         var nextSlide;
         nextSlide = slider.nextSlide;
         slider.goTo(nextSlide);
         return assert.strictEqual(slider.currentSlide, nextSlide);
+      });
+      return test('recalculates this.nextSlide correctly', function() {
+        var nextSlide;
+        nextSlide = slider.nextSlide;
+        slider.goTo(nextSlide);
+        return assert.strictEqual(slider.nextSlide, nextSlide + 1);
       });
     });
   });
