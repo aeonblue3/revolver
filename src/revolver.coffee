@@ -281,7 +281,7 @@ Revolver::goTo = (i, options) ->
   # keep transition arithmetic from breaking
   i = parseInt(i)
   # bail out if already on the intended slide
-  return this  if @disabled is true or i is @currentSlide
+  return this  if @disabled is true or @slides[i] is @slides[@currentSlide]
   # queue up i as the next slide
   @nextSlide = i
   # if slider is playing, pause() and play()

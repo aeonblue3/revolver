@@ -199,7 +199,7 @@
 
   Revolver.prototype.goTo = function(i, options) {
     i = parseInt(i);
-    if (this.disabled === true || i === this.currentSlide) {
+    if (this.disabled === true || this.slides[i] === this.slides[this.currentSlide]) {
       return this;
     }
     this.nextSlide = i;

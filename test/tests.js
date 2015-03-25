@@ -59,9 +59,7 @@
       test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
-        console.log("slider.currentSlide: " + slider.currentSlide);
         slider.removeSlide(0);
-        console.log("New nextSlide: " + slider.nextSlide);
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
       test('recalculates this.currentSlide correctly', function() {

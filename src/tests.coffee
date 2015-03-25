@@ -48,9 +48,7 @@ suite 'Instance Methods', ->
       assert.strictEqual slider.numSlides, slider.slides.length
     test 'recalculates this.nextSlide correctly', ->
       nextSlide = (if slider.currentSlide is slider.lastSlide then 0 else slider.currentSlide + 1)
-      console.log "slider.currentSlide: " + slider.currentSlide
       slider.removeSlide 0
-      console.log "New nextSlide: " + slider.nextSlide
       assert.strictEqual slider.nextSlide, nextSlide
     test 'recalculates this.currentSlide correctly', ->
       numSlides = slider.slides.length
