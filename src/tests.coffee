@@ -50,6 +50,10 @@ suite 'Instance Methods', ->
       nextSlide = (if slider.currentSlide is slider.lastSlide then 0 else slider.currentSlide + 1)
       slider.removeSlide 0
       assert.strictEqual slider.nextSlide, nextSlide
+    test 'recalculates this.currentSlide correctly', ->
+      numSlides = slider.slides.length
+      slider.removeSlide 0
+      assert.strictEqual slider.currentSlide, 0
 
   #moveSlide
   suite '#moveSlide()', ->

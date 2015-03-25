@@ -56,11 +56,17 @@
         slider.removeSlide(1);
         return assert.strictEqual(slider.numSlides, slider.slides.length);
       });
-      return test('recalculates this.nextSlide correctly', function() {
+      test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
         slider.removeSlide(0);
         return assert.strictEqual(slider.nextSlide, nextSlide);
+      });
+      return test('recalculates this.currentSlide correctly', function() {
+        var numSlides;
+        numSlides = slider.slides.length;
+        slider.removeSlide(0);
+        return assert.strictEqual(slider.currentSlide, 0);
       });
     });
     suite('#moveSlide()', function() {
