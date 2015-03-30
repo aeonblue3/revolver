@@ -18,6 +18,10 @@ suite 'Instance Methods', ->
       numSlides = slider.slides.length
       slider.addSlide document.createElement('div')
       assert.strictEqual slider.slides.length, numSlides + 1
+    test 'adds slide at correct position', ->
+      slide = document.createElement('div')
+      slider.addSlide slide, 1
+      assert.strictEqual slider.slides.indexOf(slide), 1
     test 'recalculates this.numSlides correctly', ->
       slider.addSlide document.createElement('div')
       assert.strictEqual slider.numSlides, slider.slides.length

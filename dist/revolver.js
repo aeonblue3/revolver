@@ -71,12 +71,16 @@
 
   Revolver.VERSION = '2.1.1';
 
-  Revolver.prototype.addSlide = function(slide) {
+  Revolver.prototype.addSlide = function(slide, index) {
     var currentPlusOne;
     if (!!~this.slides.indexOf(slide)) {
       return this;
     }
-    this.slides.push(slide);
+    if (index) {
+      this.slides.splice(index, 0, slide);
+    } else {
+      this.slides.push(slide);
+    }
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
     currentPlusOne = this.currentSlide + 1;

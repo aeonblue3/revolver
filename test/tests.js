@@ -20,6 +20,12 @@
         slider.addSlide(document.createElement('div'));
         return assert.strictEqual(slider.slides.length, numSlides + 1);
       });
+      test('adds slide at correct position', function() {
+        var slide;
+        slide = document.createElement('div');
+        slider.addSlide(slide, 1);
+        return assert.strictEqual(slider.slides.indexOf(slide), 1);
+      });
       test('recalculates this.numSlides correctly', function() {
         slider.addSlide(document.createElement('div'));
         return assert.strictEqual(slider.numSlides, slider.slides.length);

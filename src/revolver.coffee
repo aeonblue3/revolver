@@ -104,10 +104,13 @@ Revolver.VERSION = '2.1.1'
 
 
 # add a new slide
-Revolver::addSlide = (slide) ->
+Revolver::addSlide = (slide, index) ->
   if !!~@slides.indexOf slide then return this
   # add new slide to the slides array
-  @slides.push slide
+  if index
+    @slides.splice index, 0, slide
+  else
+    @slides.push slide
   # recalculate total number of slides
   @numSlides     = @slides.length
   # recalculate which is the last slide
