@@ -79,3 +79,4 @@ Certain methods do not need access to a specific instance of Revolver and can be
 * [**$()**](methods/$.md): Internally used for DOM traversal.
 * [**setSelectorEngine()**](methods/setselectorengine.md): Make Revolver use a third-party selector engine.
 * [**registerTransition()**](methods/registertransition.md): Register a custom transition with Revolver.
+* [**deregisterTransition()**](methods/deregistertransition.md): Deregister (remove) a custom transition from Revolver.

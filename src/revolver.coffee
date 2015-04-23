@@ -400,6 +400,10 @@ Revolver.registerTransition = (name, fn) ->
   Revolver.transitions[name] = fn
   this
 
+Revolver.deregisterTransition = (name) ->
+  delete Revolver.transitions[name]
+  this
+
 
 # return the Revolver object globally available
 window.Revolver = Revolver

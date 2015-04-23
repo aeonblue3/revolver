@@ -217,12 +217,24 @@ suite 'Static Methods', ->
   # registerTranistion
   suite '#registerTransition()', ->
     handler = ->
+    new_handler = ->
+      true
     result = Revolver.registerTransition('test', handler)
     test 'saves the handler in the transitions namespace', ->
       assert.strictEqual Revolver.transitions.test, handler
     test 'returns the Revolver global object', ->
       assert.strictEqual result, Revolver
+    test 'update transition to new handler', ->
+      new_result = Revolver.registerTransition('test', new_handler)
+      assert.strictEqual Revolver.transitions.test, new_handler
 
+  # deregisterTransition
+  suite '#deregisterTransition()', ->
+    handler = ->
+    result = Revolver.registerTransition('transient', handler)
+    test 'deregister the transition from transitions namespace', ->
+      Revolver.deregisterTransition('transient')
+      assert.isUndefined Revolver.transitions.transient, 'no test defined'
   # setSelectorEngine
   # suite '#setSelectorEngine()', ->
   #   new$ = ->

@@ -242,15 +242,32 @@
   });
 
   suite('Static Methods', function() {
-    return suite('#registerTransition()', function() {
-      var handler, result;
+    suite('#registerTransition()', function() {
+      var handler, new_handler, result;
       handler = function() {};
+      new_handler = function() {
+        return true;
+      };
       result = Revolver.registerTransition('test', handler);
       test('saves the handler in the transitions namespace', function() {
         return assert.strictEqual(Revolver.transitions.test, handler);
       });
-      return test('returns the Revolver global object', function() {
+      test('returns the Revolver global object', function() {
         return assert.strictEqual(result, Revolver);
+      });
+      return test('update transition to new handler', function() {
+        var new_result;
+        new_result = Revolver.registerTransition('test', new_handler);
+        return assert.strictEqual(Revolver.transitions.test, new_handler);
+      });
+    });
+    return suite('#deregisterTransition()', function() {
+      var handler, result;
+      handler = function() {};
+      result = Revolver.registerTransition('transient', handler);
+      return test('deregister the transition from transitions namespace', function() {
+        Revolver.deregisterTransition('transient');
+        return assert.isUndefined(Revolver.transitions.transient, 'no test defined');
       });
     });
   });

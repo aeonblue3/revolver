@@ -301,6 +301,11 @@
     return this;
   };
 
+  Revolver.deregisterTransition = function(name) {
+    delete Revolver.transitions[name];
+    return this;
+  };
+
   window.Revolver = Revolver;
 
   if (typeof window.define === "function" && window.define.amd) {
