@@ -30,6 +30,7 @@
       stopped: true
     };
     this.isAnimating = false;
+    this.loop = this.loop !== 0 ? this.loop : false;
     if (this.numSlides <= 1) {
       this.disabled = true;
       return;
@@ -52,6 +53,7 @@
 
   Revolver.defaults = {
     autoPlay: true,
+    loop: true,
     container: null,
     containerSelector: null,
     slides: null,
@@ -137,6 +139,9 @@
 
   Revolver.prototype.transition = function(options) {
     var done, transition;
+    if (!this.loop || this.loop === this.iteration) {
+      this.stop;
+    }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
       this.isAnimating = true;

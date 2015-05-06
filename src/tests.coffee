@@ -243,3 +243,7 @@ suite 'Static Methods', ->
   #   test 'saves the handler in the $ namespace', ->
   #     assert.strictEqual Revolver.$, new$
   #   Revolver.$ = old$
+
+# Behavior
+# suite 'Behavior', ->
+#   suite 'Looping', ->

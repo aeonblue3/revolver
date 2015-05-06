@@ -49,6 +49,7 @@ Revolver = (options) ->
     playing: false
     stopped: true
   @isAnimating = false
+  @loop = if @loop isnt 0 then @loop else false
 
   # Completely disable Revolver
   # if there is only one slide
@@ -83,6 +84,7 @@ Revolver = (options) ->
 # options in the constructor)
 Revolver.defaults =
   autoPlay: true          # whether or not to automatically begin playing the slides
+  loop: true              # loop slide show, Boolean or Number
   container: null         # dom element the contains the slides (optional)
   containerSelector: null # selector used to find the container element
   slides: null            # array of slide dom elements
@@ -185,6 +187,7 @@ Revolver::changeStatus = (newStatus) ->
 
 # do transition
 Revolver::transition = (options) ->
+  if not @loop or @loop is @iteration then @stop
   # if slider isn't disabled and it isn't current in transition already
   if @disabled is false and @isAnimating is false
     options = _.merge({}, @options.transition, options)
