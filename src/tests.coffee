@@ -7,6 +7,8 @@ suite 'Instance Methods', ->
     slider = new Revolver
       containerSelector: '#myslider'
       slidesSelector: '.slide'
+      transition:
+        name: 'simple'
     originalSlider = _.clone(slider)
   suiteTeardown ->
     slider = originalSlider = null

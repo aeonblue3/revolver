@@ -6,7 +6,10 @@
     setup(function() {
       slider = new Revolver({
         containerSelector: '#myslider',
-        slidesSelector: '.slide'
+        slidesSelector: '.slide',
+        transition: {
+          name: 'simple'
+        }
       });
       return originalSlider = _.clone(slider);
     });

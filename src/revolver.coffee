@@ -389,7 +389,7 @@ Revolver.setSelectorEngine = (e) ->
 Revolver.transitions = {}
 
 # a default transition
-Revolver.transitions['default'] = (options) ->
+Revolver.transitions['simple'] = (options) ->
   # hide current slide
   @slides[@currentSlide].setAttribute 'style', 'display: none'
   # show next slide

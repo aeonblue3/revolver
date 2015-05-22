@@ -294,7 +294,7 @@
 
   Revolver.transitions = {};
 
-  Revolver.transitions['default'] = function(options) {
+  Revolver.transitions['simple'] = function(options) {
     this.slides[this.currentSlide].setAttribute('style', 'display: none');
     this.slides[this.nextSlide].setAttribute('style', 'display: block');
     this.trigger('transitionComplete');
