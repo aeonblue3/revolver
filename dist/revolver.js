@@ -87,6 +87,7 @@
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
     currentPlusOne = this.currentSlide + 1;
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
+    this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
     return this;
   };
 
@@ -104,6 +105,7 @@
     this.currentSlide = this.slides.indexOf(new_slide);
     currentPlusOne = this.currentSlide + 1;
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
+    this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
     return this;
   };
 
