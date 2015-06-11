@@ -191,7 +191,7 @@ Revolver::changeStatus = (newStatus) ->
 
 # do transition
 Revolver::transition = (options) ->
-  return @stop if @slides.length <= 1
+  return @stop() if @slides.length <= 1
   if not @loop or @loop is @iteration then @stop
   # if slider isn't disabled and it isn't current in transition already
   if @disabled is false and @isAnimating is false

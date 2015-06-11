@@ -142,7 +142,7 @@
   Revolver.prototype.transition = function(options) {
     var done, transition;
     if (this.slides.length <= 1) {
-      return this.stop;
+      return this.stop();
     }
     if (!this.loop || this.loop === this.iteration) {
       this.stop;

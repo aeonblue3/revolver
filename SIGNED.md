@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJVeFiaAAoJEGzwsy88Uu2dOHQH/jurBssAvF0SiI2q7WKzNXb5
-r3r6FBhilW7jX64F7QU0WMMkus6vS9E/KdVQikHwU8VxZQYtyMVrDhGfCN7wkhcK
-qZAOF3z9KqUD1TmvomyVxjxjwirLI7ziw/s2UNtPRT1UOOmSvLoI9HWoa/XOQ1nw
-2w2zF+UKyvq/DEH2CViYUt/e8F/h3AdG+pSSlb1UIAJ8jHoyAuZT5+XpHVPY2ddF
-oc/SPxcWXjhwv36zkTpCoDTU6HwqTeUYxOLcyhEH9RSGS+OsbsQrUTr3ua+4LUvG
-NiKEJV199M2GHiZ2IsihbVR6ilc2Oym7Ns4TjmFoRKkeRuh35ARbZdn3FKqY24s=
-=s9h/
+iQEcBAABCgAGBQJVefCIAAoJEGzwsy88Uu2dqLAH/2yg49qlGeUW0PR7crQZ40aL
++JdErrNp5EwGfAccsOffcfHsa5KeC4/ck02zwzsLFRqoGM+76bHVumZONwpSdCny
+PYfoXubkZWIWLsV7LZI1ubmGGwuXPM/Mf8i18okZ9N6pIVS84AShJo4L76LBkcR8
+0ha1vTU2lEk1enYGfrST+mIoAJqME9/0pZQY2dRYSvIqmTZufRjbpRr41iiKS283
+FAoB0yaPBUn1o2p/iIzHeifek703j94sNU0u/5AuOS60X3bfgFpG7vLdhKbbPL4c
+0MHjqxvpFUkWB/3nmUivHQe0QTByZ0dXE4DVvcwrnqSt4C6boxuvplMWBBUdMeo=
+=fKf/
 -----END PGP SIGNATURE-----
 
 ```
@@ -91,15 +91,15 @@ size   exec  file                            contents
 279            bower.json                    284f9b85c3561533e4022a67fab26c7d2590d8c6499dac93ac214b386025d351
 1094           CONTRIBUTING.md               0a9bdc368d37bdeafaf9c70278d2e45649eb1fd61caae3a984fe6b97f1737eb4
                dist/                                                                                         
-9335             revolver.js                 eca46d3fec593fdc50c5a774da0fcd6f1eaa714aad798aa31ba58193aaaed95f
-5735             revolver.min.js             1328ec0bcc8215275f848ad4569cf88622a6a4127719c059bd1d6d205b7a7801
+9402             revolver.js                 d9c0d9d37e22d8af2e3692705172abc6618303551ee0cefc061e075b470e73d6
+5771             revolver.min.js             0ff5e264eb29903907d4b3190b592553b85a1164bfe16a1efb923db19c459537
                git-hooks/                                                                                    
 41     x         pre-commit                  2f01fbdbb487cde1230c5a7d175b84b0707fdf7e16be6a6f7f4c527443f489b3
 2462           Gruntfile.coffee              2b3fd1bab8aa41ca64aa7e7d090f3e13cbd6135b0e1153a0081ea3267ec84cff
 1083           package.json                  4bcb161fd7403da426566a06e680c6bd248edc660b73bbee872061e168d8a1cb
 4892           README.md                     b54562208901ab761872424a6ac1009a944a6d6f135ded48899a20333ac543db
                src/                                                                                          
-12892            revolver.coffee             3a1ffff697fc2f61c3f760594a386462bf41bfa057d875d69bb6b4d48b661249
+12932            revolver.coffee             6d445708e066980dce57d9a7cef68bb0dd68162ee511abf74a86aeb257baaaef
 8632             tests.coffee                9800d472b3358c26e19813f335c870352d2e73e255cf5d5de6babca3ae60f963
                test/                                                                                         
 1161             revolver.html               261e0f106420cf2973730eb0ff6950ba515365167dc623972357d4196263148f
