@@ -68,6 +68,7 @@
       test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
+        console.log(slider);
         slider.removeSlide(0);
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
