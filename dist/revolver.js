@@ -92,13 +92,21 @@
   };
 
   Revolver.prototype.removeSlide = function(index) {
+    var currentPlusOne;
     if (index < 0 || index >= this.numSlides) {
       return void 0;
     }
-    this.goTo(this.currentSlide, this.options);
     this.slides.splice(index, 1);
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
+    currentPlusOne = this.currentSlide + 1;
+    this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
+    this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    if (index === this.currentSlide) {
+      this.goTo(this.currentSlide, this.optionside);
+    } else {
+      this.currentSlide - 1;
+    }
     return this;
   };
 

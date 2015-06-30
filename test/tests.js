@@ -68,8 +68,13 @@
       test('recalculates this.nextSlide correctly', function() {
         var nextSlide;
         nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
-        console.log(slider);
         slider.removeSlide(0);
+        return assert.strictEqual(slider.nextSlide, nextSlide);
+      });
+      test('recalculates this.nextSlide correctly when index is not current slide', function() {
+        var nextSlide;
+        nextSlide = (slider.currentSlide === slider.lastSlide ? 0 : slider.currentSlide + 1);
+        slider.removeSlide(2);
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
       test('recalculates this.currentSlide correctly', function() {
