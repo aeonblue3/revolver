@@ -129,6 +129,8 @@ Revolver::addSlide = (slide, index) ->
 Revolver::removeSlide = (index) ->
   return undefined if index < 0 or index >= @numSlides
 
+  @goTo @currentSlide, @options
+
   # Remove the slide from the arrays
   @slides.splice index, 1
 
@@ -138,8 +140,7 @@ Revolver::removeSlide = (index) ->
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
 
-  # return instance
-  @goTo @currentSlide, @options
+  @
 
 # Move a slide in slides array
 Revolver::moveSlide = (src_index, dest_index) ->

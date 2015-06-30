@@ -95,10 +95,11 @@
     if (index < 0 || index >= this.numSlides) {
       return void 0;
     }
+    this.goTo(this.currentSlide, this.options);
     this.slides.splice(index, 1);
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
-    return this.goTo(this.currentSlide, this.options);
+    return this;
   };
 
   Revolver.prototype.moveSlide = function(src_index, dest_index) {
