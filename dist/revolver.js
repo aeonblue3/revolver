@@ -44,6 +44,8 @@
     this.on('restart', this.options.onRestart);
     this.on('transitionStart', this.options.transition.onStart);
     this.on('transitionComplete', this.options.transition.onComplete);
+    this.on('addSlide', this.options.onAddSlide);
+    this.on('removeSlide', this.options.onRemoveSlide);
     _.bind(this.options.onReady, this)();
     if (this.options.autoPlay) {
       this.play({}, true);
@@ -63,6 +65,8 @@
     onStop: function() {},
     onPause: function() {},
     onRestart: function() {},
+    onAddSlide: function() {},
+    onRemoveSlide: function() {},
     rotationSpeed: 4000,
     transition: {
       onStart: function() {},
@@ -83,6 +87,7 @@
     } else {
       this.slides.push(slide);
     }
+    this.trigger('addSlide');
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
     currentPlusOne = this.currentSlide + 1;
@@ -97,6 +102,7 @@
       return void 0;
     }
     this.slides.splice(index, 1);
+    this.trigger('removeSlide');
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
     currentPlusOne = this.currentSlide + 1;

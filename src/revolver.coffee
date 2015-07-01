@@ -68,6 +68,8 @@ Revolver = (options) ->
   @on 'restart', @options.onRestart
   @on 'transitionStart', @options.transition.onStart
   @on 'transitionComplete', @options.transition.onComplete
+  @on 'addSlide', @options.onAddSlide
+  @on 'removeSlide', @options.onRemoveSlide
 
   # fire onReady event handler
   _.bind(@options.onReady, this)()
@@ -94,6 +96,8 @@ Revolver.defaults =
   onStop: ->              # gets called when the stop() method is called
   onPause: ->             # gets called when the pause() method is called
   onRestart: ->           # gets called when the restart() method is called
+  onAddSlide: ->          # gets called when the addSlide() method is called
+  onRemoveSlide: ->       # gets called when the removeSlide() method is called
   rotationSpeed: 4000     # how long (in milliseconds) to stay on each slide before going to the next
   transition:
     onStart: ->           # gets called when the transition animation begins
@@ -113,6 +117,10 @@ Revolver::addSlide = (slide, index) ->
     @slides.splice index, 0, slide
   else
     @slides.push slide
+
+  # trigger add slide event
+  @trigger 'addSlide'
+
   # recalculate total number of slides
   @numSlides     = @slides.length
   # recalculate which is the last slide
@@ -131,6 +139,9 @@ Revolver::removeSlide = (index) ->
 
   # Remove the slide from the arrays
   @slides.splice index, 1
+
+  # trigger remove slide event
+  @trigger 'removeSlide'
 
   # recalculate total number of slides
   @numSlides     = @slides.length
