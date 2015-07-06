@@ -109,9 +109,12 @@
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
     this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
     if (index === this.currentSlide) {
-      this.goTo(this.currentSlide, this.optionside);
-    } else {
-      this.currentSlide - 1;
+      this.nextSlide = index;
+      if (!this.status.playing) {
+        this.transition();
+      } else {
+        this.pause().play();
+      }
     }
     return this;
   };
