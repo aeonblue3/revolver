@@ -154,10 +154,6 @@ Revolver::removeSlide = (index) ->
   # Previous Slide
   @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
 
-  if index is @currentSlide
-    @nextSlide = index
-    if not @status.playing then @transition() else @pause().play()
-
   this
 
 # Move a slide in slides array
