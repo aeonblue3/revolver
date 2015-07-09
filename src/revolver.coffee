@@ -148,9 +148,11 @@ Revolver::removeSlide = (index) ->
 
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
+
   # recalculate which is the next slide
   currentPlusOne = @currentSlide + 1
   @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
+
   # Previous Slide
   @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
 
@@ -169,9 +171,22 @@ Revolver::moveSlide = (src_index, dest_index) ->
   @slides[dest_index] = @slides[src_index]
   # Move temp to old src_index
   @slides[src_index] = temp
-  # Goto the new destination
-  @goTo dest_index, @options
 
+  @currentSlide = dest_index
+
+  @numSlides = @slides.length
+
+  # recalculate which is the last slide
+  @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
+
+  # recalculate which is the next slide
+  currentPlusOne = @currentSlide + 1
+  @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
+
+  # Previous Slide
+  @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
+
+  this
 
 # set options
 Revolver::setOptions = () ->

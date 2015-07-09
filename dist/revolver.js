@@ -112,7 +112,7 @@
   };
 
   Revolver.prototype.moveSlide = function(src_index, dest_index) {
-    var temp;
+    var currentPlusOne, temp;
     if (dest_index >= this.slides.length) {
       dest_index = 0;
     }
@@ -122,7 +122,13 @@
     temp = this.slides[dest_index];
     this.slides[dest_index] = this.slides[src_index];
     this.slides[src_index] = temp;
-    return this.goTo(dest_index, this.options);
+    this.currentSlide = dest_index;
+    this.numSlides = this.slides.length;
+    this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
+    currentPlusOne = this.currentSlide + 1;
+    this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
+    this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    return this;
   };
 
   Revolver.prototype.setOptions = function() {
