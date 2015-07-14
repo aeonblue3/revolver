@@ -82,7 +82,7 @@
     if (!!~this.slides.indexOf(slide)) {
       return this;
     }
-    if (index) {
+    if (index !== void 0) {
       this.slides.splice(index, 0, slide);
     } else {
       this.slides.push(slide);

@@ -113,7 +113,7 @@ Revolver.VERSION = '2.1.1'
 Revolver::addSlide = (slide, index) ->
   if !!~@slides.indexOf slide then return this
   # add new slide to the slides array
-  if index
+  if index isnt undefined
     @slides.splice index, 0, slide
   else
     @slides.push slide
