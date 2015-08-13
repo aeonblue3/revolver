@@ -3,7 +3,7 @@
   var Revolver, addNamespaces;
 
   Revolver = function(options) {
-    var slidesToAdd;
+    var slide, slidesToAdd, _i, _len;
     this.currentSlide = 0;
     this.nextSlide = 0;
     this.numSlides = 0;
@@ -22,7 +22,10 @@
     }
     this.slides = [];
     slidesToAdd = this.options.slides || Revolver.$(this.options.slidesSelector, this.container);
-    _.each(slidesToAdd, this.addSlide, this);
+    for (_i = 0, _len = slidesToAdd.length; _i < _len; _i++) {
+      slide = slidesToAdd[_i];
+      this.addSlide(slide);
+    }
     this.previousSlide = this.lastSlide;
     this.status = {
       paused: false,
@@ -84,6 +87,9 @@
     }
     if (index !== void 0) {
       this.slides.splice(index, 0, slide);
+      if (index <= this.currentSlide) {
+        this.currentSlide++;
+      }
     } else {
       this.slides.push(slide);
     }
@@ -112,18 +118,18 @@
     return this;
   };
 
-  Revolver.prototype.moveSlide = function(src_index, dest_index) {
+  Revolver.prototype.moveSlide = function(srcIndex, destIndex) {
     var currentPlusOne, temp;
-    if (dest_index >= this.slides.length) {
-      dest_index = 0;
+    if (destIndex >= this.slides.length) {
+      destIndex = 0;
     }
-    if (dest_index < 0) {
-      dest_index = this.slides.length - 1;
+    if (destIndex < 0) {
+      destIndex = this.slides.length - 1;
     }
-    temp = this.slides[dest_index];
-    this.slides[dest_index] = this.slides[src_index];
-    this.slides[src_index] = temp;
-    this.currentSlide = dest_index;
+    temp = this.slides[destIndex];
+    this.slides[destIndex] = this.slides[srcIndex];
+    this.slides[srcIndex] = temp;
+    this.currentSlide = destIndex;
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
     currentPlusOne = this.currentSlide + 1;

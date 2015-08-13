@@ -40,7 +40,7 @@ Revolver = (options) ->
   # add all slides
   @slides = []
   slidesToAdd = @options.slides or Revolver.$(@options.slidesSelector, @container)
-  _.each slidesToAdd, @addSlide, this
+  @addSlide slide for slide in slidesToAdd
 
   # finish setting up init values
   @previousSlide = @lastSlide
@@ -115,6 +115,7 @@ Revolver::addSlide = (slide, index) ->
   # add new slide to the slides array
   if index isnt undefined
     @slides.splice index, 0, slide
+    if index <= @currentSlide then @currentSlide++
   else
     @slides.push slide
 
@@ -161,20 +162,20 @@ Revolver::removeSlide = (index) ->
   this
 
 # Move a slide in slides array
-Revolver::moveSlide = (src_index, dest_index) ->
+Revolver::moveSlide = (srcIndex, destIndex) ->
   # If the destination index is greater than the array length, 0
-  if dest_index >= @slides.length then dest_index = 0
+  if destIndex >= @slides.length then destIndex = 0
   # If the destination index is less than 0, use array length - 1
-  if dest_index < 0 then dest_index = @slides.length - 1
+  if destIndex < 0 then destIndex = @slides.length - 1
 
   # Copy slide in destination spot
-  temp = @slides[dest_index]
+  temp = @slides[destIndex]
   # Move source slide to destination
-  @slides[dest_index] = @slides[src_index]
-  # Move temp to old src_index
-  @slides[src_index] = temp
+  @slides[destIndex] = @slides[srcIndex]
+  # Move temp to old srcIndex
+  @slides[srcIndex] = temp
 
-  @currentSlide = dest_index
+  @currentSlide = destIndex
 
   @numSlides = @slides.length
 

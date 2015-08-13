@@ -39,6 +39,12 @@
         slider.addSlide(document.createElement('div'));
         return assert.strictEqual(slider.nextSlide, nextSlide);
       });
+      test('recalculates this.nextSlide correctly, insert at zero index', function() {
+        var nextSlide;
+        nextSlide = 2;
+        slider.addSlide(document.createElement('div'), 0);
+        return assert.strictEqual(slider.nextSlide, nextSlide);
+      });
       return test('does not add slide if already added', function() {
         var numSlides, slide;
         numSlides = slider.slides.length;

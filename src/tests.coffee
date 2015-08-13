@@ -31,6 +31,12 @@ suite 'Instance Methods', ->
       nextSlide = (if slider.currentSlide is slider.lastSlide then 0 else slider.currentSlide + 1)
       slider.addSlide document.createElement('div')
       assert.strictEqual slider.nextSlide, nextSlide
+    test 'recalculates this.nextSlide correctly, insert at zero index', ->
+      # Assumes we start at index zero, insert at index zero. That makes currstSlide = 1
+      # and next slide 2.
+      nextSlide = 2
+      slider.addSlide document.createElement('div'), 0
+      assert.strictEqual slider.nextSlide, nextSlide
     test 'does not add slide if already added', ->
       numSlides = slider.slides.length
       slide = document.getElementsByClassName('slide')[0]
