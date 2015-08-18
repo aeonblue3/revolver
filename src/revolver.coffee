@@ -150,7 +150,7 @@ Revolver::removeSlide = (index) ->
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
 
-  @currentSlide = (if @currentSlide >= @lastSlide then 0 else @currentSlide)
+  @currentSlide = (if @currentSlide > @lastSlide then 0 else @currentSlide)
 
   # recalculate which is the next slide
   currentPlusOne = @currentSlide + 1
