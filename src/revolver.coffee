@@ -14,6 +14,7 @@
 'use strict'
 
 breakOn = (property, object) ->
+  return this if not Object.observe
   Object.observe object, (changes) ->
     changes.forEach (change) ->
       if property is change.name

@@ -3,6 +3,9 @@
   var Revolver, addNamespaces, breakOn;
 
   breakOn = function(property, object) {
+    if (!Object.observe) {
+      return this;
+    }
     return Object.observe(object, function(changes) {
       return changes.forEach(function(change) {
         if (property === change.name) {
