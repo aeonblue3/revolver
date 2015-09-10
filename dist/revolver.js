@@ -1,6 +1,18 @@
 (function() {
   'use strict';
-  var Revolver, addNamespaces;
+  var Revolver, addNamespaces, breakOn;
+
+  breakOn = function(property, object) {
+    return Object.observer(object, function(changes) {
+      return changes.forEach(function(changhe) {
+        if (property === change.name) {
+          console.warn("Property " + property + " changed!");
+          console.warn(change);
+          debugger;
+        }
+      });
+    });
+  };
 
   Revolver = function(options) {
     var slide, slidesToAdd, _i, _len;
@@ -13,6 +25,9 @@
     this.disabled = false;
     this.options = {};
     this.setOptions(Revolver.defaults, options);
+    if (this.options.debug) {
+      breakOn("disabled", this);
+    }
     if (this.options.container) {
       this.container = this.options.container;
     } else if (this.options.containerSelector) {
@@ -57,6 +72,7 @@
   };
 
   Revolver.defaults = {
+    debug: false,
     autoPlay: true,
     loop: true,
     container: null,

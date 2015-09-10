@@ -13,6 +13,14 @@
 ;
 'use strict'
 
+breakOn = (property, object) ->
+  Object.observer object, (changes) ->
+    changes.forEach (changhe) ->
+      if property is change.name
+        console.warn "Property " + property + " changed!"
+        console.warn change
+        debugger
+
 # constructor
 Revolver = (options) ->
 
@@ -28,6 +36,7 @@ Revolver = (options) ->
   # merge options
   @options = {}
   @setOptions Revolver.defaults, options
+  if @options.debug then breakOn "disabled", this
 
   # set container
   if @options.container
@@ -85,6 +94,7 @@ Revolver = (options) ->
 # (gets merged with user defined
 # options in the constructor)
 Revolver.defaults =
+  debug: false
   autoPlay: true          # whether or not to automatically begin playing the slides
   loop: true              # loop slide show, Boolean or Number
   container: null         # dom element the contains the slides (optional)
