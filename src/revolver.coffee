@@ -14,7 +14,7 @@
 'use strict'
 
 breakOn = (property, object) ->
-  Object.observer object, (changes) ->
+  Object.observe object, (changes) ->
     changes.forEach (changhe) ->
       if property is change.name
         console.warn "Property " + property + " changed!"
