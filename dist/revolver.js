@@ -4,7 +4,7 @@
 
   breakOn = function(property, object) {
     return Object.observe(object, function(changes) {
-      return changes.forEach(function(changhe) {
+      return changes.forEach(function(change) {
         if (property === change.name) {
           console.warn("Property " + property + " changed!");
           console.warn(change);
@@ -13,6 +13,8 @@
       });
     });
   };
+
+  window.breakn = breakOn;
 
   Revolver = function(options) {
     var slide, slidesToAdd, _i, _len;
@@ -115,6 +117,9 @@
     currentPlusOne = this.currentSlide + 1;
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
     this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    if (this.disabled) {
+      this.disabled = !this.disabled;
+    }
     return this;
   };
 
@@ -131,6 +136,9 @@
     currentPlusOne = this.currentSlide + 1;
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
     this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    if (this.numslides < 2) {
+      this.disabled = true;
+    }
     return this;
   };
 

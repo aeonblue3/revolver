@@ -15,12 +15,12 @@
 
 breakOn = (property, object) ->
   Object.observe object, (changes) ->
-    changes.forEach (changhe) ->
+    changes.forEach (change) ->
       if property is change.name
         console.warn "Property " + property + " changed!"
         console.warn change
         debugger
-
+window.breakn = breakOn
 # constructor
 Revolver = (options) ->
 
@@ -142,6 +142,7 @@ Revolver::addSlide = (slide, index) ->
   # Previous Slide
   @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
   # return instance
+  if @disabled then @disabled = !@disabled
   this
 
 # Remove an existing slide
@@ -168,6 +169,8 @@ Revolver::removeSlide = (index) ->
 
   # Previous Slide
   @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
+
+  if @numslides < 2 then @disabled = true
 
   this
 
