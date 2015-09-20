@@ -341,6 +341,17 @@ Revolver::goTo = (i, options) ->
   # if not play, simply transition() straight to it
   (if not @status.playing then @transition(options) else @pause().play(options))
 
+# Quickly go to a slide with no fuss
+Revolver::quickGoTo = (i, options) ->
+  # keep transition arithmetic from breaking
+  i = parseInt(i)
+  # bail out if already on the intended slide
+  return this  if @disabled is true or @slides[i] is @slides[@currentSlide]
+  # If playing, stop.
+  if @status.playing then @stop
+  # Goto the intended slide without and fancy transition
+  @transition name: 'simple'
+
 
 # CONVENIENCE METHODS (for building slider controls)
 

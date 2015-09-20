@@ -222,6 +222,22 @@ suite 'Instance Methods', ->
       slider.goTo nextSlide
       assert.strictEqual slider.nextSlide, nextSlide + 1
 
+  # Quick Goto
+  suite '#quickGoTo()', ->
+    test 'does nothing if disabled', ->
+      slider.quickGoTo 0
+      slider.disabled = true
+      slider.quickGoTo slider.lastSlide
+      assert.strictEqual slider.currentSlide, 0
+    test 'goes to intended slide', ->
+      nextSlide = slider.nextSlide
+      slider.quickGoTo nextSlide
+      assert.strictEqual slider.currentSlide, nextSlide
+    test 'recalculates this.nextSlide correctly', ->
+      nextSlide = slider.nextSlide
+      slider.quickGoTo nextSlide
+      assert.strictEqual slider.nextSlide, nextSlide + 1
+
 
 # Static Methods
 suite 'Static Methods', ->

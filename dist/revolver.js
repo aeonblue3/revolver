@@ -272,6 +272,19 @@
     }
   };
 
+  Revolver.prototype.quickGoTo = function(i, options) {
+    i = parseInt(i);
+    if (this.disabled === true || this.slides[i] === this.slides[this.currentSlide]) {
+      return this;
+    }
+    if (this.status.playing) {
+      this.stop;
+    }
+    return this.transition({
+      name: 'simple'
+    });
+  };
+
   Revolver.prototype.first = function(options) {
     return this.goTo(0, options);
   };
