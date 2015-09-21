@@ -234,7 +234,7 @@
         return assert.strictEqual(slider.intervalId, null);
       });
     });
-    suite('#goTo()', function() {
+    return suite('#goTo()', function() {
       test('does nothing if disabled', function() {
         slider.goTo(0);
         slider.disabled = true;
@@ -251,26 +251,6 @@
         var nextSlide;
         nextSlide = slider.nextSlide;
         slider.goTo(nextSlide);
-        return assert.strictEqual(slider.nextSlide, nextSlide + 1);
-      });
-    });
-    return suite('#quickGoTo()', function() {
-      test('does nothing if disabled', function() {
-        slider.quickGoTo(0);
-        slider.disabled = true;
-        slider.quickGoTo(slider.lastSlide);
-        return assert.strictEqual(slider.currentSlide, 0);
-      });
-      test('goes to intended slide', function() {
-        var nextSlide;
-        nextSlide = slider.nextSlide;
-        slider.quickGoTo(nextSlide);
-        return assert.strictEqual(slider.currentSlide, nextSlide);
-      });
-      return test('recalculates this.nextSlide correctly', function() {
-        var nextSlide;
-        nextSlide = slider.nextSlide;
-        slider.quickGoTo(nextSlide);
         return assert.strictEqual(slider.nextSlide, nextSlide + 1);
       });
     });

@@ -186,9 +186,6 @@
     if (this.slides.length <= 1) {
       return this.stop();
     }
-    if (!this.loop || this.loop === this.iteration) {
-      this.stop;
-    }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
       this.isAnimating = true;
@@ -270,19 +267,6 @@
     } else {
       return this.pause().play(options);
     }
-  };
-
-  Revolver.prototype.quickGoTo = function(i, options) {
-    i = parseInt(i);
-    if (this.disabled === true || this.slides[i] === this.slides[this.currentSlide]) {
-      return this;
-    }
-    if (this.status.playing) {
-      this.stop;
-    }
-    return this.transition({
-      name: 'simple'
-    });
   };
 
   Revolver.prototype.first = function(options) {
