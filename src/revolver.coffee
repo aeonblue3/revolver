@@ -162,7 +162,7 @@ Revolver::removeSlide = (index) ->
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
 
-  @currentSlide = (if @currentSlide > @lastSlide then 0 else @currentSlide)
+  @currentSlide = (if @currentSlide is 0 then 0 else @currentSlide - 1)
 
   # recalculate which is the next slide
   currentPlusOne = @currentSlide + 1
@@ -230,6 +230,7 @@ Revolver::changeStatus = (newStatus) ->
 # do transition
 Revolver::transition = (options) ->
   return @stop() if @slides.length <= 1
+  if not @loop or @loop is @iteration then @stop
   # if slider isn't disabled and it isn't current in transition already
   if @disabled is false and @isAnimating is false
     options = _.merge({}, @options.transition, options)
@@ -339,6 +340,17 @@ Revolver::goTo = (i, options) ->
   # (which will transition immediately and restart the loop)
   # if not play, simply transition() straight to it
   (if not @status.playing then @transition(options) else @pause().play(options))
+
+# Quickly go to a slide with no fuss
+Revolver::quickGoTo = (i, options) ->
+  # keep transition arithmetic from breaking
+  i = parseInt(i)
+  # bail out if already on the intended slide
+  return this  if @disabled is true or @slides[i] is @slides[@currentSlide]
+  # If playing, stop.
+  if @status.playing then @stop
+  # Goto the intended slide without and fancy transition
+  @transition name: 'simple'
 
 
 # CONVENIENCE METHODS (for building slider controls)

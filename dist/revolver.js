@@ -135,7 +135,7 @@
     this.trigger('removeSlide');
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
-    this.currentSlide = (this.currentSlide > this.lastSlide ? 0 : this.currentSlide);
+    this.currentSlide = (this.currentSlide === 0 ? 0 : this.currentSlide - 1);
     currentPlusOne = this.currentSlide + 1;
     this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
     this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
@@ -185,6 +185,9 @@
     var done, transition;
     if (this.slides.length <= 1) {
       return this.stop();
+    }
+    if (!this.loop || this.loop === this.iteration) {
+      this.stop;
     }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
@@ -267,6 +270,19 @@
     } else {
       return this.pause().play(options);
     }
+  };
+
+  Revolver.prototype.quickGoTo = function(i, options) {
+    i = parseInt(i);
+    if (this.disabled === true || this.slides[i] === this.slides[this.currentSlide]) {
+      return this;
+    }
+    if (this.status.playing) {
+      this.stop;
+    }
+    return this.transition({
+      name: 'simple'
+    });
   };
 
   Revolver.prototype.first = function(options) {
