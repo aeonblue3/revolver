@@ -9,6 +9,8 @@ Revolver's defaults can be overwritten upon instantiation (as the second argumen
 * [**containerSelector**](options/containerselector.md): String selector used to find the container element.
 * [**slides**](options/slides.md): Array of dom elements (slides).
 * [**slidesSelector**](options/slidesselector.md): String selector used to find slides dom elements.
+* [**loop**](options/loop.md): Boolean determines if slideshow should loop.
+* [**iterations**](options/iterations.md): Number of times to loop through slideshow.
 * [**onPause()**](options/onpause.md): A callback that is executed every time the pause() method is called.
 * [**onPlay()**](options/onplay.md): A callback that is executed every time the play() method is called.
 * [**onReady()**](options/onready.md): A callback that is executed as soon as Revolver is completely setup and ready to go.

@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJWGCHpAAoJEGzwsy88Uu2dAnUH/006TAggAIjvwdoMBxp5w+nf
-eO7eAguEv6OI5H2yfF0g+Jp5tqw2FvUaPiglVaTVFQhO027OMOmFsN8K4Y5iWZtk
-cD7mmQmcPJvSZiItRqAkNNwKQYWb4z/eCwZ3LtJgmoyJnT/UZUujMJprhFy/p57M
-/9eTJuH3YEFKYvy+3Iu7wqATRLMjZwv6YZFAUHt8ZfWo2D6RxwnwiY5Bn0Km/Vtp
-LVWMYv/cQMukrA46zv7RE6Nngy/8wWVKnJKHuOn0JrfHsV1WCoX3cXpRXYdhZWow
-CMYYn/FGqy/srZr7SxONEM+lunjolyBAHC/P+xtPHWRb3ISehEBS2KaXvIJIO0o=
-=tOWo
+iQEcBAABCgAGBQJWGCZbAAoJEGzwsy88Uu2dNZcIAMa2NZHgdh5+Hh29yB8lNFaO
+Hqb23//zcbCeSdIHrexYAU04ctWGJVAUyN0idMR++8ynlPfVWbLdMFd2Ed0i6wvQ
+PIOmy/Jsur9DA5voJQ1wYPI1gJcvOGWC/izptNrcNc5E1iWJ3OaTX7l8iL7ZnDW6
+dNgGI9huu+5WbNxrSWcaSzAPqfgjAquoglpXiEYGXejmulXAeOjz2Jpv5qpjji06
+HSbfxRQFLvnUPjr7Ef2dDj/byT6tMS3++0nsarvm0a755gjw4Cy4ZqYvrJhxLwHC
+ud98rbRoWrrn/yB1SjEG1iZv5YxrFAxhjE4PopK3MvCmq5RHYtkqKgvboRpJMBs=
+=1AQx
 -----END PGP SIGNATURE-----
 
 ```
@@ -62,6 +62,8 @@ size   exec  file                            contents
 388                autoplay.md               0412ab1d051b7a30e7321f35b743baa236e6d852c57b5e014121d01c9411ebde
 476                container.md              66fa55bc1f07d9b2bd78b89f633cf91e35f033173c5e102cae3ef45bd37758ba
 312                containerselector.md      509c1753694602565f4e360399dba25dcb8d5add923a7d92a1a30269e3b43f6e
+296                iterations.md             172fb67440591e2ff2231106571fac116f06b1b383219d5cac47377c404b48a6
+350                loop.md                   5396163862b34a66ce3709afa52bc633655c05381d3471168d1aaa1ae07030e4
 456                onpause.md                1b2c7dea13eb25b237c727d37e00ef10901b3d7519251cfedc8f3036805145d1
 452                onplay.md                 1948cbc7a4395dba58dec7d9615d3bf0e27e55a75cb88aa4ce5b0660919f4770
 456                onready.md                e8e405c7317d196d42ff4241a6e4e040f47f2b171aba9267dbc3bb3a922abfeb
@@ -87,7 +89,7 @@ size   exec  file                            contents
 213                previousslide.md          99e22b5b6723f437e70f212cbbdffeabe888ae5a2f205e93c95a2ddf925cc6d3
 161                slides.md                 98e84c49e5243da8ff0b98163aa72b82e9f3a0e610cb13a3d11b13a645b70f50
 205                status.md                 0e27dd120dbd9f46717d9e7ed6ad7dee05d2db0c85e1491f61eb15e53dc6e43a
-6563             README.md                   9b6e1b2d271bb2f3c0582ebf71de89709e1330b0ee62868ac51455f4bf07f970
+6725             README.md                   866bab93ada464af1d63f17c2524709adff9caef4ba2a23d95dccd65f752cc60
 280            bower.json                    6cbfb91f7b81335f39553ddc949c4dde629155d84b86a44642f40de2fd58869e
 1094           CONTRIBUTING.md               0a9bdc368d37bdeafaf9c70278d2e45649eb1fd61caae3a984fe6b97f1737eb4
                dist/                                                                                         
