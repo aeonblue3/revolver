@@ -13,15 +13,6 @@
 ;
 'use strict'
 
-breakOn = (property, object) ->
-  return this if not Object.observe
-  Object.observe object, (changes) ->
-    changes.forEach (change) ->
-      if property is change.name
-        console.warn "Property " + property + " changed!"
-        console.warn change
-        debugger
-window.breakn = breakOn
 # constructor
 Revolver = (options) ->
 
@@ -37,7 +28,6 @@ Revolver = (options) ->
   # merge options
   @options = {}
   @setOptions Revolver.defaults, options
-  if @options.debug then breakOn "disabled", this
 
   # set container
   if @options.container
@@ -59,7 +49,6 @@ Revolver = (options) ->
     playing: false
     stopped: true
   @isAnimating = false
-  @loop = if @loop isnt 0 then @loop else false
 
   # Completely disable Revolver
   # if there is only one slide
@@ -97,7 +86,8 @@ Revolver = (options) ->
 Revolver.defaults =
   debug: false
   autoPlay: true          # whether or not to automatically begin playing the slides
-  loop: true              # loop slide show, Boolean or Number
+  loop: true              # loop slide show, Boolean only
+  iterations: 1           # Number of times slideshow will play if loop is false, ignored if loop is true
   container: null         # dom element the contains the slides (optional)
   containerSelector: null # selector used to find the container element
   slides: null            # array of slide dom elements
@@ -230,7 +220,7 @@ Revolver::changeStatus = (newStatus) ->
 # do transition
 Revolver::transition = (options) ->
   return @stop() if @slides.length <= 1
-  if not @loop or @loop is @iteration then @stop
+  return @stop() if @status.playing and not @options.loop and @options.iterations is @iteration
   # if slider isn't disabled and it isn't current in transition already
   if @disabled is false and @isAnimating is false
     options = _.merge({}, @options.transition, options)
@@ -243,7 +233,7 @@ Revolver::transition = (options) ->
     @currentSlide = @nextSlide
     @previousSlide = (if @currentSlide is 0 then @lastSlide else @currentSlide - 1)
     @nextSlide = (if @currentSlide is @lastSlide then 0 else @currentSlide + 1)
-    @iteration++
+    if @currentSlide is @lastSlide then @iteration++
     # execute transitionStart event handlers
     @trigger 'transitionStart'
   # return instance
@@ -252,6 +242,7 @@ Revolver::transition = (options) ->
 
 # play the slider
 Revolver::play = (options, firstTime) ->
+  if @status.stopped and not @options.loop then @iteration = 0
   # if slider isn't disabled and it's not already playing
   if @disabled is false and not @status.playing
     # change status

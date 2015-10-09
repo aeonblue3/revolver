@@ -222,6 +222,33 @@ suite 'Instance Methods', ->
       slider.goTo nextSlide
       assert.strictEqual slider.nextSlide, nextSlide + 1
 
+  # Quick Goto
+  suite '#quickGoTo()', ->
+    test 'does nothing if disabled', ->
+      slider.quickGoTo 0
+      slider.disabled = true
+      slider.quickGoTo slider.lastSlide
+      assert.strictEqual slider.currentSlide, 0
+    test 'goes to intended slide', ->
+      nextSlide = slider.nextSlide
+      slider.quickGoTo nextSlide
+      assert.strictEqual slider.currentSlide, nextSlide
+    test 'recalculates this.nextSlide correctly', ->
+      nextSlide = slider.nextSlide
+      slider.quickGoTo nextSlide
+      assert.strictEqual slider.nextSlide, nextSlide + 1
+
+  # # Looping
+  # suite 'Play slideshow limited number of times', ->
+  #   setup ->
+  #     slider.setOptions
+  #       loop: false
+  #       iteration: 0
+  #       rotationSpeed: 10
+  #   test 'loop is false', ->
+  #     slider.play()
+  #     window.setTimeout(assert.strictEqual(slider.status.stopped, true), 50)
+
 # Static Methods
 suite 'Static Methods', ->
 

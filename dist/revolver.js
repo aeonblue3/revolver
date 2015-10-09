@@ -1,23 +1,6 @@
 (function() {
   'use strict';
-  var Revolver, addNamespaces, breakOn;
-
-  breakOn = function(property, object) {
-    if (!Object.observe) {
-      return this;
-    }
-    return Object.observe(object, function(changes) {
-      return changes.forEach(function(change) {
-        if (property === change.name) {
-          console.warn("Property " + property + " changed!");
-          console.warn(change);
-          debugger;
-        }
-      });
-    });
-  };
-
-  window.breakn = breakOn;
+  var Revolver, addNamespaces;
 
   Revolver = function(options) {
     var slide, slidesToAdd, _i, _len;
@@ -30,9 +13,6 @@
     this.disabled = false;
     this.options = {};
     this.setOptions(Revolver.defaults, options);
-    if (this.options.debug) {
-      breakOn("disabled", this);
-    }
     if (this.options.container) {
       this.container = this.options.container;
     } else if (this.options.containerSelector) {
@@ -53,7 +33,6 @@
       stopped: true
     };
     this.isAnimating = false;
-    this.loop = this.loop !== 0 ? this.loop : false;
     if (this.numSlides <= 1) {
       this.disabled = true;
       return;
@@ -80,6 +59,7 @@
     debug: false,
     autoPlay: true,
     loop: true,
+    iterations: 1,
     container: null,
     containerSelector: null,
     slides: null,
@@ -186,8 +166,8 @@
     if (this.slides.length <= 1) {
       return this.stop();
     }
-    if (!this.loop || this.loop === this.iteration) {
-      this.stop;
+    if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
+      return this.stop();
     }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
@@ -198,13 +178,18 @@
       this.currentSlide = this.nextSlide;
       this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
       this.nextSlide = (this.currentSlide === this.lastSlide ? 0 : this.currentSlide + 1);
-      this.iteration++;
+      if (this.currentSlide === this.lastSlide) {
+        this.iteration++;
+      }
       this.trigger('transitionStart');
     }
     return this;
   };
 
   Revolver.prototype.play = function(options, firstTime) {
+    if (this.status.stopped && !this.options.loop) {
+      this.iteration = 0;
+    }
     if (this.disabled === false && !this.status.playing) {
       this.changeStatus('playing');
       this.trigger('play');
