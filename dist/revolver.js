@@ -167,6 +167,9 @@
       return this.stop();
     }
     if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
+      if (this.options.endslide) {
+        this.goTo(this.options.endslide);
+      }
       return this.stop();
     }
     if (this.disabled === false && this.isAnimating === false) {
