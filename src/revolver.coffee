@@ -222,7 +222,8 @@ Revolver::transition = (options) ->
   return @stop() if @slides.length <= 1
   if @status.playing and not @options.loop and @options.iterations is @iteration
     @stop()
-    @goTo(@options.endslide) if @options.endslide? != undefined
+    if @options.endslide?
+      if @options.endslide > @lastSlide then @goTo(@lastSlide) else @goTo(@options.endslide)
     this
   # if slider isn't disabled and it isn't current in transition already
   if @disabled is false and @isAnimating is false

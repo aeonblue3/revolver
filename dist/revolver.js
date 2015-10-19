@@ -168,8 +168,12 @@
     }
     if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
       this.stop();
-      if ((this.options.endslide != null) !== void 0) {
-        this.goTo(this.options.endslide);
+      if (this.options.endslide != null) {
+        if (this.options.endslide > this.lastSlide) {
+          this.goTo(this.lastSlide);
+        } else {
+          this.goTo(this.options.endslide);
+        }
       }
       this;
     }
