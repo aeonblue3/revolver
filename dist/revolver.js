@@ -168,7 +168,7 @@
     }
     if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
       this.stop();
-      if (this.options.endslide !== void 0) {
+      if ((this.options.endslide != null) !== void 0) {
         this.goTo(this.options.endslide);
       }
       this;
