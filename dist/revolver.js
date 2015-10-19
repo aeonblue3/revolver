@@ -167,10 +167,11 @@
       return this.stop();
     }
     if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
-      if (this.options.endslide) {
+      this.stop();
+      if (this.options.endslide !== void 0) {
         this.goTo(this.options.endslide);
       }
-      return this.stop();
+      this;
     }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
