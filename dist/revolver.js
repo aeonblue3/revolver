@@ -167,7 +167,15 @@
       return this.stop();
     }
     if (this.status.playing && !this.options.loop && this.options.iterations === this.iteration) {
-      return this.stop();
+      this.stop();
+      if (this.options.endslide != null) {
+        if (this.options.endslide > this.lastSlide) {
+          this.goTo(this.lastSlide);
+        } else {
+          this.goTo(this.options.endslide);
+        }
+      }
+      this;
     }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
