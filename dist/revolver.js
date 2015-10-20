@@ -175,7 +175,7 @@
           this.goTo(this.options.endslide);
         }
       }
-      this;
+      return this;
     }
     if (this.disabled === false && this.isAnimating === false) {
       options = _.merge({}, this.options.transition, options);
