@@ -35,7 +35,6 @@
     this.isAnimating = false;
     if (this.numSlides <= 1) {
       this.disabled = true;
-      return;
     }
     this.on('transitionComplete', function() {
       return this.isAnimating = false;
