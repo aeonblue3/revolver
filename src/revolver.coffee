@@ -167,29 +167,27 @@ Revolver::removeSlide = (index) ->
 Revolver::moveSlide = (srcIndex, destIndex) ->
   # If the destination index is greater than the array length, 0
   if destIndex >= @slides.length then destIndex = 0
+
   # If the destination index is less than 0, use array length - 1
   if destIndex < 0 then destIndex = @slides.length - 1
 
-  # Copy slide in destination spot
-  temp = @slides[destIndex]
-  # Move source slide to destination
-  @slides[destIndex] = @slides[srcIndex]
-  # Move temp to old srcIndex
-  @slides[srcIndex] = temp
-
-  @currentSlide = destIndex
+  # Move the slide in the array to the destIndex
+  @slides.splice destIndex, 0, (@slides.splice srcIndex, 1 )[0]
 
   @numSlides = @slides.length
 
   # recalculate which is the last slide
   @lastSlide     = (if @numSlides is 0 then 0 else @numSlides - 1)
 
-  # recalculate which is the next slide
-  currentPlusOne = @currentSlide + 1
-  @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
+  if @currentSlide is srcIndex
+    @currentSlide = destIndex
 
-  # Previous Slide
-  @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
+    # recalculate which is the next slide
+    currentPlusOne = @currentSlide + 1
+    @nextSlide     = (if currentPlusOne > @lastSlide then 0 else currentPlusOne)
+
+    # Previous Slide
+    @previousSlide = (if @currentSlide is 0 then @lastSlide else (@currentSlide - 1))
 
   this
 
