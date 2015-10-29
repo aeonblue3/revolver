@@ -125,22 +125,22 @@
   };
 
   Revolver.prototype.moveSlide = function(srcIndex, destIndex) {
-    var currentPlusOne, temp;
+    var currentPlusOne;
     if (destIndex >= this.slides.length) {
       destIndex = 0;
     }
     if (destIndex < 0) {
       destIndex = this.slides.length - 1;
     }
-    temp = this.slides[destIndex];
-    this.slides[destIndex] = this.slides[srcIndex];
-    this.slides[srcIndex] = temp;
-    this.currentSlide = destIndex;
+    this.slides.splice(destIndex, 0, (this.slides.splice(srcIndex, 1))[0]);
     this.numSlides = this.slides.length;
     this.lastSlide = (this.numSlides === 0 ? 0 : this.numSlides - 1);
-    currentPlusOne = this.currentSlide + 1;
-    this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
-    this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    if (this.currentSlide === srcIndex) {
+      this.currentSlide = destIndex;
+      currentPlusOne = this.currentSlide + 1;
+      this.nextSlide = (currentPlusOne > this.lastSlide ? 0 : currentPlusOne);
+      this.previousSlide = (this.currentSlide === 0 ? this.lastSlide : this.currentSlide - 1);
+    }
     return this;
   };
 
