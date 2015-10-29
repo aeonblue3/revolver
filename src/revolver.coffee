@@ -52,9 +52,7 @@ Revolver = (options) ->
 
   # Completely disable Revolver
   # if there is only one slide
-  if @numSlides <= 1
-    @disabled = true
-    return
+  if @numSlides <= 1 then @disabled = true
 
   # always disable isAnimating flag
   # after transition is complete
